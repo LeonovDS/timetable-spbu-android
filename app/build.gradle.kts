@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     id("com.google.devtools.ksp") version "1.9.23-1.0.20"
+    kotlin("plugin.serialization") version "1.9.23"
 }
 
 android {
@@ -70,4 +71,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     implementation(libs.jsoup)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.datetime)
+
 }
