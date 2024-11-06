@@ -7,12 +7,12 @@ import kotlinx.datetime.LocalDateTime
 
 @Dao
 interface BanDAO {
-    @Query("SELECT * FROM BanData")
-    fun getBans(): List<BanData>
+    @Query("SELECT * FROM Ban")
+    fun getBans(): List<Ban>
 
     @Insert
-    fun insertBans(vararg lessons: BanData)
+    fun insertBans(vararg lessons: Ban)
 
-    @Query("DELETE FROM BanData WHERE name = :name AND start_time = :startTime")
+    @Query("DELETE FROM Ban WHERE name = :name AND start_time = :startTime")
     fun deleteBan(name: String, startTime: LocalDateTime)
 }

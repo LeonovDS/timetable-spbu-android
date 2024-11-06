@@ -6,9 +6,9 @@ import androidx.room.TypeConverters
 
 @Database(
     entities = [
-        TimetableData::class,
-        LessonData::class,
-        BanData::class,
+        Timetable::class,
+        Lesson::class,
+        Ban::class,
     ],
     version = 1
 )

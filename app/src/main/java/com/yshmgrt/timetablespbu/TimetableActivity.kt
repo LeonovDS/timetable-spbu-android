@@ -27,13 +27,11 @@ class TimetableActivity : ComponentActivity() {
             object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
                     super.onAvailable(network)
-                    Log.d("onAvailable", "onAvailable: $network")
                     internetController.setIsOnline(true)
                 }
 
                 override fun onUnavailable() {
                     super.onUnavailable()
-                    Log.d("onUnavailable", "onUnavailable")
                     internetController.setIsOnline(false)
                 }
             }

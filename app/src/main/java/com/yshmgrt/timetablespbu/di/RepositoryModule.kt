@@ -1,11 +1,11 @@
 package com.yshmgrt.timetablespbu.di
 
-import com.yshmgrt.timetablespbu.data.RemoteTimetableRepository
-import com.yshmgrt.timetablespbu.data.RemoteTimetableRepositoryImpl
-import com.yshmgrt.timetablespbu.data.SetupRepository
-import com.yshmgrt.timetablespbu.data.SetupRepositoryImpl
-import com.yshmgrt.timetablespbu.data.UrlRepository
-import com.yshmgrt.timetablespbu.data.UrlRepositoryImpl
+import com.yshmgrt.timetablespbu.data.lesson.RemoteLessonRepository
+import com.yshmgrt.timetablespbu.data.lesson.RemoteLessonRepositoryImpl
+import com.yshmgrt.timetablespbu.data.setup.SetupRepository
+import com.yshmgrt.timetablespbu.data.setup.SetupRepositoryImpl
+import com.yshmgrt.timetablespbu.data.timetable.TimetableIdRepository
+import com.yshmgrt.timetablespbu.data.timetable.TimetableIdRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,11 +21,11 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideUrlRepository(
-        urlRepositoryImpl: UrlRepositoryImpl
-    ): UrlRepository
+        urlRepositoryImpl: TimetableIdRepositoryImpl
+    ): TimetableIdRepository
 
     @Binds
     abstract fun provideRemoteTimetableRepository(
-        remoteTimetableRepositoryImpl: RemoteTimetableRepositoryImpl
-    ): RemoteTimetableRepository
+        remoteTimetableRepositoryImpl: RemoteLessonRepositoryImpl
+    ): RemoteLessonRepository
 }

@@ -2,9 +2,12 @@ package com.yshmgrt.timetablespbu.di
 
 import android.content.Context
 import androidx.room.Room
-import com.yshmgrt.timetablespbu.persistance.LessonDAO
-import com.yshmgrt.timetablespbu.persistance.BanDAO
-import com.yshmgrt.timetablespbu.persistance.TimetableDAO
+import com.yshmgrt.timetablespbu.data.ban.BanRepository
+import com.yshmgrt.timetablespbu.data.ban.BanRepositoryImpl
+import com.yshmgrt.timetablespbu.data.lesson.LocalLessonRepository
+import com.yshmgrt.timetablespbu.data.lesson.LocalLessonRepositoryImpl
+import com.yshmgrt.timetablespbu.data.timetable.TimetableRepository
+import com.yshmgrt.timetablespbu.data.timetable.TimetableRepositoryImpl
 import com.yshmgrt.timetablespbu.persistance.TimetableDatabase
 import dagger.Module
 import dagger.Provides
@@ -28,19 +31,19 @@ object TimetableDatabaseModule {
 
     @Provides
     @Singleton
-    fun provideTimetableDAO(timetableDatabase: TimetableDatabase): TimetableDAO {
-        return timetableDatabase.timetableDao()
+    fun provideBanRepository(timetableDatabase: TimetableDatabase): BanRepository {
+        return BanRepositoryImpl(timetableDatabase.banDao())
     }
 
     @Provides
     @Singleton
-    fun provideLessonDAO(timetableDatabase: TimetableDatabase): LessonDAO {
-        return timetableDatabase.lessonDao()
+    fun provideLessonRepository(timetableDatabase: TimetableDatabase): LocalLessonRepository {
+        return LocalLessonRepositoryImpl(timetableDatabase.lessonDao())
     }
 
     @Provides
     @Singleton
-    fun providePermanentBanDAO(timetableDatabase: TimetableDatabase): BanDAO {
-        return timetableDatabase.banDao()
+    fun providesTimetableDAO(timetableDatabase: TimetableDatabase): TimetableRepository {
+        return TimetableRepositoryImpl(timetableDatabase.timetableDao())
     }
 }

@@ -8,6 +8,7 @@ import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,6 +26,10 @@ fun <T> Dropdown(
     itemName: T.() -> String = { toString() },
 ) {
     var expanded by remember { mutableStateOf(false) }
+    LaunchedEffect(items) {
+        selected.value = null
+        expanded = false
+    }
 
     ExposedDropdownMenuBox(
         expanded = expanded,
@@ -41,7 +46,8 @@ fun <T> Dropdown(
                     expanded = expanded
                 )
             },
-            modifier = modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true)
+            modifier = modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true),
+            enabled = items.isNotEmpty()
         )
         ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             items.forEachIndexed { index, item ->
